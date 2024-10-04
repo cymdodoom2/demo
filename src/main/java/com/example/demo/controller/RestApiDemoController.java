@@ -25,12 +25,12 @@ public class RestApiDemoController{
 
 	public RestApiDemoController(CoffeeRepository coffeeRepository){
 		this.coffeeRepository = coffeeRepository;
-        this.coffeeRepository.saveAll(List.of(
-            new Coffee("Cafe Cerenza"),
-            new Coffee("Cafe Ganador"),
-            new Coffee("Cafe Lareno"),
-            new Coffee("Cafe Tres Pontas")
-        ));
+        // this.coffeeRepository.saveAll(List.of(
+        //     new Coffee("Cafe Cerenza"),
+        //     new Coffee("Cafe Ganador"),
+        //     new Coffee("Cafe Lareno"),
+        //     new Coffee("Cafe Tres Pontas")
+        // ));
         // coffees.addAll(List.of(
 		// 					new Coffee("Cafe Cerenza"),
 		// 					new Coffee("Cafe Ganador"),
@@ -57,6 +57,7 @@ public class RestApiDemoController{
 	@PostMapping
 	Coffee postCoffee(@RequestBody Coffee coffee){//추가    
 		//coffees.add(coffee);
+		
 		return coffeeRepository.save(coffee);
 	}
 
@@ -72,9 +73,9 @@ public class RestApiDemoController{
 		// }
 		//return (coffeeIndex == -1) ? new ResponseEntity<>(postCoffee(coffee), HttpStatus.CREATED) : new ResponseEntity<>(coffee, HttpStatus.OK);
 
-        return (!coffeeRepository.existsById(id)) 
-            ? new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.CREATED)
-            : new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.OK);
+        return (coffeeRepository.existsById(id)) 
+            ? new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.OK)
+            : new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

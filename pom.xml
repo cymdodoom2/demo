@@ -52,6 +52,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- @ConfigurationProperties 클래스와 application.properties 파일에 정의된 관련 속성을 연결하도록 하는 설정 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
